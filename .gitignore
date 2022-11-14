@@ -3,5 +3,5 @@
 .idea
 
 # ignore ALL files in ANY directory named temp
-".idea/"
-"__pycache__"
+.idea/
+__pycache__
