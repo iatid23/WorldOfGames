@@ -53,7 +53,7 @@ __________________________________________________'''
 
 
 def load_game():
-    global choice_dictionary, difficulty_dictionary
+    global choice_dictionary, difficulty_dictionary, choice_dictionary_content
     y = 1
     print(f'Please choose a game to play:')
     while y <= len(choice_dictionary) :
