@@ -17,6 +17,7 @@ def get_list_from_user():
     return 0
     # Will return a list of numbers prompted from the user. The list length will be in the size of difficulty.
 
+
 def is_list_equal():
     # A function to compare two lists if they are equal. The function will return True/False.
     return 0
