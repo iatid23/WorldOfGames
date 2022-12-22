@@ -1,4 +1,6 @@
-
+from GuessGame import play
+from MemoryGame import play as memory_play
+from CurrencyRouletteGame import play as money_play
 import os
 choice_dictionary_content = {1: 'a sequence of numbers will appear for 1 second and you have to  guess it back',
                              2: 'guess a number and see if you chose like the computer',
@@ -20,7 +22,7 @@ def input_and_check_num(num, str):
         except ValueError:
             print("You didn't enter a number please choose again")
             continue
-        if 1 < c <= num:
+        if 1 <= c <= num:
             return c
         else:
             print(f"You didn't enter a number between 1 or {num}, please enter again")
@@ -30,18 +32,18 @@ def input_and_check_hello():
     while True:
         name = input(f'Please Enter Your name : \n')
         typ = type(name)
-        if typ != type(string):
+        if typ != str:
             print("You didn't entered string name, please enter your name again")
-        # try:
-        #     int(name)
-        #     print("You entered a number not your name, please enter your name again")
-        #     continue
-        # except ValueError:
-        #     if name == '' or name == ' ':
-        #         print("You didn't enter chars please enter your name again")
-        #         continue
-        #     else:
-        #         return name
+        try:
+            int(name)
+            print("You entered a number not your name, please enter your name again")
+            continue
+        except ValueError:
+            if name == '' or name == ' ':
+                print("You didn't enter chars please enter your name again")
+                continue
+            else:
+                return name
 
 
 def welcome(name):
@@ -61,6 +63,7 @@ def load_game():
         y = y + 1
     # check error input
     choice = input_and_check_num(len(choice_dictionary), 'choice')
+    print(choice)
 
     print(f'Please choose game difficulty level:')
     y = 1
@@ -72,5 +75,11 @@ def load_game():
     difficulty = input_and_check_num(len(difficulty_dictionary), 'difficulty')
 
     print(f'You chose to play {choice_dictionary[choice]} in {difficulty_dictionary[difficulty]} level')
+    if choice == 1:
+        memory_play(difficulty)
+    elif choice == 2:
+        play(difficulty)
+    elif choice == 3:
+        money_play(difficulty)
 
 

@@ -22,6 +22,6 @@ def is_list_equal():
     # A function to compare two lists if they are equal. The function will return True/False.
     return 0
 
-def play():
+def play(diff):
     # Will call the functions above and play the game. Will return True/False if the user lost or won.
     return 0
