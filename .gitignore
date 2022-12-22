@@ -1,0 +1,6 @@
+# ignore ALL .log files
+*.log
+.idea/
+__pycache__/
+#
+
