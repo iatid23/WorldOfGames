@@ -47,7 +47,7 @@ def welcome(name):
 Here you can find many cool games to play
 __________________________________________________'''
     sleep(2)
-    os.system('cls')
+    Screen_cleaner()
 
     return ret_str
 

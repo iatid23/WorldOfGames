@@ -2,6 +2,7 @@ import requests
 import json
 import random
 from Utils import Screen_cleaner
+from time import sleep
 
 # This game will use the free currency api to get the current exchange rate from USD to ILS,
 # will generate a new random number between 1-100
@@ -64,6 +65,8 @@ def play(diff):
         guess = get_guess_from_user(money)
         if int(interval[0]) <= int(guess) <= int(interval[1]):
             print(f"Wow you are A Genius good guess !!! the exect currency is {currency_rate(money).result}")
+            sleep(2)
+            Screen_cleaner()
             more = False
             return True
         else:
@@ -74,6 +77,8 @@ def play(diff):
                 continue
             else:
                 print("Thank you - Hope to see you soon - Bye Bye :) ")
+                sleep(2)
+                Screen_cleaner()
                 more = False
             return False
 

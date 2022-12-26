@@ -2,7 +2,7 @@ from time import sleep
 import random
 from Utils import Screen_cleaner
 def show_fast(items):
-    count = [5,4,3,2,1,0]
+    count = [5, 4, 3, 2, 1, 0]
     i = 0
     for item in count:
         sleep(1)
@@ -59,12 +59,12 @@ def is_list_equal(list1, list2):
     if list1 == list2:
         print("Great you Won!!")
         sleep(3)
-        os.system('cls')
+        oScreen_cleaner()
         return True
     else:
         print("Oh .. never mind . you could try again another time")
         sleep(3)
-        os.system('cls')
+        Screen_cleaner()
         return False
 
 def play(diff):
