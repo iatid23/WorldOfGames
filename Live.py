@@ -73,13 +73,14 @@ def load_game():
 
     # check error input
     difficulty = input_and_check_num(len(difficulty_dictionary), 'difficulty')
-
+    diff = int(difficulty)
+    print(choice)
     print(f'You chose to play {choice_dictionary[choice]} in {difficulty_dictionary[difficulty]} level')
     if choice == 1:
-        memory_play(difficulty)
+        memory_play(diff)
     elif choice == 2:
-        play(difficulty)
+        play(diff)
     elif choice == 3:
-        money_play(difficulty)
+        money_play(diff)
 
 
