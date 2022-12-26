@@ -1,4 +1,6 @@
 import random
+from time import sleep
+from Utils import Screen_cleaner
 # The purpose of the guess game is to start a new game,
 # cast a random number between 1 to a variable called difficulty.
 
@@ -14,7 +16,7 @@ def get_geuss_from_user(diff):
         guess = input(f'Please choose a number between 1 and {diff} as your guess \n')
         try:
             gss = int(guess)
-            if not (1 <= gss <= 5) :
+            if not (1 <= gss <= 5):
                 print("You have entered a number not in range please try again")
                 continue
             else:
@@ -45,15 +47,21 @@ def play(diff):
         compare = compare_results(secret_num, guess)
         if compare :
             print("Correct!!! - Congratulations you did it ")
+            sleep(2)
+            Screen_cleaner()
             more = False
         else:
             print("nice try - better luck next time")
             print("You are most welcome to try again")
             x = input("Please Press 'Enter' to try again or any other key to exit \n")
             if x == '':
+                sleep(2)
+                Screen_cleaner()
                 continue
             else:
                 print("Thank you - Hope to see you soon - Bye Bye :) ")
+                sleep(2)
+                Screen_cleaner()
                 more = False
 
 

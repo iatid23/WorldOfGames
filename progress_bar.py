@@ -14,6 +14,7 @@ l = len(items)
 
 loadbar(0, l, prefix='Progress:', suffix='Complete', length=l)
 print("pp")
+
 for i, item in enumerate(items):
    sleep(0.1)
    loadbar(i + 1, l, prefix='Progress:', suffix='Complete', length=l)

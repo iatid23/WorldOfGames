@@ -1,6 +1,7 @@
 import requests
-import  json
+import json
 import random
+from Utils import Screen_cleaner
 
 # This game will use the free currency api to get the current exchange rate from USD to ILS,
 # will generate a new random number between 1-100
@@ -36,7 +37,7 @@ def get_money_interval(d, t):
     # interval  = (lower_bound, upper_bound)
     interval_after_exchange= (currency_rate(lower_bound).result, currency_rate(upper_bound).result)
     #print(interval)
-    print(interval_after_exchange)
+    #print(interval_after_exchange)
 
     return interval_after_exchange
 
