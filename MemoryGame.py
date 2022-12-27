@@ -43,10 +43,13 @@ def get_list_from_user(diff):
             try:
                 list.append(int(x))
                 i += 1
+                sleep(0.1)
                 break
             except:
                 print('You did not entered a number, please try again')
+                sleep(0.1)
                 continue
+            sleep(0.1)
    #print(f'your list is -  {list}')
     return list
 
@@ -59,12 +62,14 @@ def is_list_equal(list1, list2):
     if list1 == list2:
         print("Great you Won!!")
         sleep(3)
-        oScreen_cleaner()
+        Screen_cleaner()
+        sleep(0.1)
         return True
     else:
         print("Oh .. never mind . you could try again another time")
         sleep(3)
         Screen_cleaner()
+        sleep(0.1)
         return False
 
 def play(diff):

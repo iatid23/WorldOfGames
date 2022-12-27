@@ -49,10 +49,13 @@ def get_guess_from_user(t):
         money_guess = input(f"Hi,Do you Think You Can Guess how much {t} is in ILS rate ? \n")
         try:
             gss = int(money_guess)
+            sleep(0.1)
             return money_guess
         except:
             print("Its not a number please try again")
+            sleep(0.1)
             continue
+        sleep(0.1)
 
 def play(diff):
     # Will call the functions above and play the game. Will return True/False if the user lost or won.
@@ -68,18 +71,22 @@ def play(diff):
             sleep(2)
             Screen_cleaner()
             more = False
+            sleep(0.1)
             return True
         else:
             print("nice try - better luck next time")
             print("You are most welcome to try again")
             x = input("Please Press 'Enter' to try again or any other key to exit \n")
             if x == '':
+                sleep(0.1)
                 continue
             else:
                 print("Thank you - Hope to see you soon - Bye Bye :) ")
                 sleep(2)
                 Screen_cleaner()
                 more = False
+                sleep(0.1)
+            sleep(0.1)
             return False
 
 

@@ -18,12 +18,16 @@ def get_geuss_from_user(diff):
             gss = int(guess)
             if not (1 <= gss <= 5):
                 print("You have entered a number not in range please try again")
+                sleep(0.1)
                 continue
             else:
+                sleep(0.1)
                 return gss
         except:
             print("Its not a number please try again")
+            sleep(0.1)
             continue
+        sleep(0.1)
 
 def compare_results(secret_number, guess):
     # will compare the secret generated number to the one prompted by the get_geuss_from_user.
@@ -49,7 +53,9 @@ def play(diff):
             print("Correct!!! - Congratulations you did it ")
             sleep(2)
             Screen_cleaner()
+            sleep(0.1)
             more = False
+            return True
         else:
             print("nice try - better luck next time")
             print("You are most welcome to try again")
@@ -57,13 +63,15 @@ def play(diff):
             if x == '':
                 sleep(2)
                 Screen_cleaner()
+                sleep(0.1)
                 continue
             else:
                 print("Thank you - Hope to see you soon - Bye Bye :) ")
                 sleep(2)
                 Screen_cleaner()
                 more = False
-
+                sleep(0.1)
+        sleep(0.1)
 
 
 
