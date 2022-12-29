@@ -11,6 +11,21 @@ choice_dictionary_content = {1: 'a sequence of numbers will appear for 1 second 
 choice_dictionary = {1: 'Memory Game', 2: 'Guess Game', 3: 'Currency Roulette'}
 difficulty_dictionary = {1: 'Super Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 'Extreme'}
 
+def play_or_not(name):
+    print(welcome(name))
+    x = input('Do you want to play again - you can change name ? if Not you can enter "exit"')
+    if x == 'exit' or x == 'Exit' or x == 'EXIT':
+        index_of_play = 0
+        exit(0)
+    else:
+        load_game()
+    Screen_cleaner()
+
+
+#
+
+
+
 def input_and_check_num(num, str):
     while True:
         try:
@@ -59,22 +74,11 @@ Here you can find many cool games to play
 __________________________________________________'''
     sleep(2)
     Screen_cleaner()
-
-
     return ret_str
 
 
 def load_game():
-    index_of_play = 0
-    if index_of_play == 1:
-        x = input('Please enter "exit" if you wish to end the game')
-        if x == 'exit' or x == 'Exit' or x == 'EXIT':
-            index_of_play = 0
-            exit(0)
-    Screen_cleaner()
     name = input_and_check_hello()
-    print(welcome(name))
-
     boo = True
     while boo:
         global choice_dictionary, difficulty_dictionary, choice_dictionary_content
@@ -85,7 +89,6 @@ def load_game():
             y = y + 1
         # check error input
         choice = input_and_check_num(len(choice_dictionary), 'choice')
-
         sleep(1)
         Screen_cleaner()
         sleep(0.1)
@@ -108,13 +111,15 @@ def load_game():
         if choice == 1:
             if memory_play(diff):
                 add_score(diff, name)
+                inpboo = 2
         elif choice == 2:
             if guess_play(diff):
                 add_score(diff, name)
+                inpboo = 3
         elif choice == 3:
             if money_play(diff):
                 add_score(diff, name)
-        inpboo = 2
+                inpboo = 4
         sleep(0.1)
         while inpboo > 1:
             inp = input('do you want to play again Enter Yes to play again or No to exit \n')
@@ -135,7 +140,7 @@ def load_game():
         else:
             boo = False
             index_of_play = 1
-            load_game()
+            play_or_not(name)
             # exit(0)
 
 

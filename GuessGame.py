@@ -72,6 +72,7 @@ def play(diff):
                 more = False
                 sleep(0.1)
         sleep(0.1)
+        return False
 
 
 

@@ -24,6 +24,7 @@ def add_header(r):
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
+
 def init_http():
     http = '''
             <html>
@@ -47,31 +48,38 @@ def init_http():
         '''
     return http
 
+
 def success(http, file):
     print("suc2")
-    http2 = http
     number_td = ''
     name_td = ''
     score_td = ''
     ind = 0
     print("suc3")
-    for line in file:
-        print("suc4", ind)
-        if ind == 0:
-            ind += 1
-            continue
-        ind += 1
-        (key, value) = line.split()
-        tmp_name = key
-        SCORE = value
-        http2 += f'''<tr class="hvr" ><th scope="row" class="ctr">#{ind - 1}</th><td > {tmp_name} </td><td class="ctr2"> {SCORE} </td></tr>\n'''
-        print("suc45", ind)
+    try:
+        for line in file:
+            print("suc4", ind)
+            if ind == 0:
+                ind += 1
+                continue
+            else:
+                (key, value) = line.split()
+                print(f'key - {key} , value - {value} , index - {ind}')
+                tmp_name = key
+                SCORE = value
+                http += f'''<tr class="hvr" ><th scope="row" class="ctr">#{ind}</th><td > {tmp_name} </td><td class="ctr2"> {SCORE} </td></tr>\n'''
+                ind += 1
+    except Exception as e:
+        print('Error', e)
+
     print("suc4")
-    return 'http2'
+    return http
+
 
 def error(http, err):
     http += f'''<tr style="background-color:#E78587; height:250px"><th scope="row" ></th><td style="font-size:32px;  text-align:center"> {err} </td><td ></td></tr>\n'''
     return http
+
 
 def done(http):
     http += '''
@@ -82,9 +90,10 @@ def done(http):
               '''
     return http
 
+
 @app.route("/")
 def score_server_run():
-    httpp = init_http()
+    http = init_http()
     ERROR = """ERROR  -                          
     
     The score file does not exists"""
@@ -92,24 +101,23 @@ def score_server_run():
     try:
         file = open('Scores.txt')
         print("suc1")
-        http_success = success(httpp , file)
-
-        print("suc5")
-        http_done = done(http_sucess)
+        http_success = success(http, file)
+        http_done = done(http_success)
+        print(http_done)
         file.close()
         f = open('index.html', 'w+')
         f.write(http_done)
         f.close()
-        return render_template('index.html')
-    except:
+    except Exception as e:
+        print(f'error {e}')
         http_error = error(httpp, ERROR)
         http_done = done(http_error)
         f = open('index.html', 'w+')
         f.write(http_done)
         f.close()
+    finally:
+
         return render_template('index.html')
-
-
 
 
 def score_server():
