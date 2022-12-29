@@ -22,7 +22,6 @@ def currency_rate(number):
             self.__dict__ = json.loads(result)
 
     p = Payload(result)
-    #print(result)
     return p
 
 def random_dollar():
@@ -35,10 +34,7 @@ def get_money_interval(d, t):
 
     lower_bound = t-(5-d)
     upper_bound = t+(5-d)
-    # interval  = (lower_bound, upper_bound)
     interval_after_exchange= (currency_rate(lower_bound).result, currency_rate(upper_bound).result)
-    #print(interval)
-    #print(interval_after_exchange)
 
     return interval_after_exchange
 

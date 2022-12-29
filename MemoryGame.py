@@ -27,7 +27,6 @@ def generate_sequence(diff):
     print('in 5 second the list will appear for 0.7 seconds - get ready \n')
     x = input('are you ready... ? if so please press enter to start')
     show_fast(list)
-    #print(f'random list is -  {list}')
     return list
 
 def get_list_from_user(diff):
@@ -50,15 +49,12 @@ def get_list_from_user(diff):
                 sleep(0.1)
                 continue
             sleep(0.1)
-   #print(f'your list is -  {list}')
     return list
 
 def is_list_equal(list1, list2):
     # A function to compare two lists if they are equal. The function will return True/False.
     list1.sort()
-    #print(list1)
     list2.sort()
-    #print(list2)
     if list1 == list2:
         print("Great you Won!!")
         sleep(3)
@@ -77,5 +73,4 @@ def play(diff):
     list1 = generate_sequence(diff)
     list2 = get_list_from_user(diff)
     boo = is_list_equal(list1, list2)
-    #print(boo)
     return boo
