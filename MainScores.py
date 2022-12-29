@@ -31,7 +31,7 @@ def init_http():
         <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css" />
-         <meta http-equiv="refresh" content="10; URL=/">
+         <meta http-equiv="refresh" content="5; URL=/">
 
         <title>Scores Game</title>
         </head>
@@ -52,21 +52,21 @@ def init_http():
 
 
 def success(http, file):
-    print("suc2")
+    #print("suc2")
     number_td = ''
     name_td = ''
     score_td = ''
     ind = 0
-    print("suc3")
+   # print("suc3")
     try:
         for line in file:
-            print("suc4", ind)
+            #print("suc4", ind)
             if ind == 0:
                 ind += 1
                 continue
             else:
                 (key, value) = line.split()
-                print(f'key - {key} , value - {value} , index - {ind}')
+                #print(f'key - {key} , value - {value} , index - {ind}')
                 tmp_name = key
                 SCORE = value
                 http += f'''<tr class="hvr" ><th scope="row" class="ctr">#{ind}</th><td > {tmp_name} </td><td class="ctr2"> {SCORE} </td></tr>\n'''
@@ -74,7 +74,7 @@ def success(http, file):
     except Exception as e:
         print('Error', e)
 
-    print("suc4")
+    #print("suc4")
     return http
 
 
@@ -101,10 +101,10 @@ def score_server_run():
 
     try:
         file = open('Scores.txt')
-        print("suc1")
+       # print("suc1")
         http_success = success(http, file)
         http_done = done(http_success)
-        print(http_done)
+        #print(http_done)
         file.close()
         f = open('index.html', 'w+')
         f.write(http_done)
