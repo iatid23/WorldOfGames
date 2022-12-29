@@ -26,7 +26,7 @@ def add_score(difficulty, name):
             ind += 1
             continue
         (key, value) = line.split()
-        print(f'key - {key}, value - {value} - index - {ind}')
+        #print(f'key - {key}, value - {value} - index - {ind}')
         lines[key] = int(value)
         ind += 1
     file.close()
