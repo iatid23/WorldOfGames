@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-
+from Utils import BAD_RETURN_CODE
 # This file’s sole purpose is to serve the user’s score currently in the scores.txt file over HTTP with
 # HTML. This will be done by using python’s flask library.
 
@@ -26,11 +26,13 @@ def add_header(r):
 
 
 def init_http():
-    http = '''
+    http = f'''
             <html>
         <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css" />
+         <meta http-equiv="refresh" content="10; URL=/">
+
         <title>Scores Game</title>
         </head>
         <h1> Winning Score Board </h1>
@@ -94,9 +96,8 @@ def done(http):
 @app.route("/")
 def score_server_run():
     http = init_http()
-    ERROR = """ERROR  -                          
-    
-    The score file does not exists"""
+
+    ERROR = f"""ERROR  -  {BAD_RETURN_CODE}"""
 
     try:
         file = open('Scores.txt')
@@ -110,7 +111,8 @@ def score_server_run():
         f.close()
     except Exception as e:
         print(f'error {e}')
-        http_error = error(httpp, ERROR)
+        ERROR = str(e)
+        http_error = error(http, ERROR)
         http_done = done(http_error)
         f = open('index.html', 'w+')
         f.write(http_done)

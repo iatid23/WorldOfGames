@@ -13,7 +13,7 @@ difficulty_dictionary = {1: 'Super Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 
 
 def play_or_not(name):
     print(welcome(name))
-    x = input('Do you want to play again - you can change name ? if Not you can enter "exit"')
+    x = input('Do you want to play again - you can change name ? if Not you can enter "exit"\n')
     if x == 'exit' or x == 'Exit' or x == 'EXIT':
         index_of_play = 0
         exit(0)
