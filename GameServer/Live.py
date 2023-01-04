@@ -1,6 +1,6 @@
-from GuessGame import play as guess_play
+from GameServer.GuessGame import play as guess_play
 from MemoryGame import play as memory_play
-from CurrencyRouletteGame import play as money_play
+from GameServer.CurrencyRouletteGame import play as money_play
 from Utils import Screen_cleaner
 from time import sleep
 from Score import add_score
@@ -10,6 +10,7 @@ choice_dictionary_content = {1: 'a sequence of numbers will appear for 1 second 
                              3: 'Currency Roulette - try and guess the value of a random amount of USD in ILS'}
 choice_dictionary = {1: 'Memory Game', 2: 'Guess Game', 3: 'Currency Roulette'}
 difficulty_dictionary = {1: 'Super Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 'Extreme'}
+
 
 def play_or_not(name):
     print(welcome(name))
@@ -25,24 +26,23 @@ def play_or_not(name):
 #
 
 
-
 def input_and_check_num(num, str):
     while True:
-        try:
-            choice = input(f'Enter Your {str} : \n')
-            c = int(choice)
-        except ValueError:
+        choice = input(f'Enter Your {str} : \n')
+        if choice.isnumeric():
+            if 1 <= int(choice) <= num:
+                sleep(0.1)
+                return int(choice)
+            else:
+                print(f"You didn't enter a number between 1 or {num}, please enter again")
+                sleep(0.1)
+                continue
+        else:
             print("You didn't enter a number please choose again")
             sleep(0.1)
             continue
-        if 1 <= c <= num:
-            sleep(0.1)
-            return c
-        else:
-            print(f"You didn't enter a number between 1 or {num}, please enter again")
-            sleep(0.1)
-            continue
-        sleep(0.1)
+    sleep(0.1)
+
 
 def input_and_check_hello():
     while True:
@@ -51,12 +51,12 @@ def input_and_check_hello():
         if typ != str:
             print("You didn't entered string name, please enter your name again")
             sleep(0.1)
-        try:
+        if name.isnumeric():
             int(name)
             print("You entered a number not your name, please enter your name again")
             sleep(0.1)
             continue
-        except ValueError:
+        else:
             if name == '' or name == ' ':
                 print("You didn't enter chars please enter your name again")
                 sleep(0.1)
@@ -65,7 +65,6 @@ def input_and_check_hello():
                 sleep(0.1)
                 return name
         sleep(0.1)
-
 
 
 def welcome(name):
@@ -84,7 +83,7 @@ def load_game():
         global choice_dictionary, difficulty_dictionary, choice_dictionary_content
         y = 1
         print(f'Please choose a game to play:')
-        while y <= len(choice_dictionary) :
+        while y <= len(choice_dictionary):
             print(f'{y}. {choice_dictionary[y]} - {choice_dictionary_content[y]}')
             y = y + 1
         # check error input
@@ -127,7 +126,7 @@ def load_game():
                 Screen_cleaner()
                 inpboo = 0
             elif inp == 'NO' or inp == 'No' or inp == 'no':
-                print ('Thank you for playing :) Have a nice day !!!')
+                print('Thank you for playing :) Have a nice day !!!')
                 sleep(3)
                 Screen_cleaner()
                 inpboo = 1
@@ -142,5 +141,3 @@ def load_game():
             index_of_play = 1
             play_or_not(name)
             # exit(0)
-
-

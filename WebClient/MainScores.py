@@ -1,7 +1,6 @@
 from flask import Flask, render_template
-from Utils import BAD_RETURN_CODE
-import os
-import glob
+from GameServer.Utils import BAD_RETURN_CODE
+import glob, os
 # This file’s sole purpose is to serve the user’s score currently in the scores.txt file over HTTP with
 # HTML. This will be done by using python’s flask library.
 
@@ -12,16 +11,27 @@ import glob
 hst = '0.0.0.0'
 pt = '30000'
 app = Flask(__name__, template_folder='.', static_folder='css')
+file_name = "../GameServer//Scores.txt"
+path_files = "../GameServer"
+webpath = "../WebClient"
 web_file_name = "index.html"
-file_name = "Scores.txt"
+
+
 def init_file():
     pattern = "*.txt"
-    files = list(filter(os.path.isfile, glob.glob(pattern)))
-    files.sort(key=lambda x: os.path.getmtime(x))
-    lastfile = files[-1]
-    print("Most recent file matching {}: {}".format(pattern, lastfile))
-    file_name = lastfile
-    return  file_name
+    os.chdir(path_files)
+    os.getcwd()
+    files = glob.glob(pattern)
+    if len(files) > 0:
+        files.sort(key=lambda x: os.path.getmtime(x))
+        lastfile = files[len(files)-1]
+        print("Most recent file matching {}: {}".format(pattern, lastfile))
+        file_name = lastfile
+        return file_name
+    else:
+        return False
+
+
 @app.after_request
 def add_header(r):
     """
@@ -62,37 +72,32 @@ def init_http():
 
 
 def success(http, file):
-
     number_td = ''
     name_td = ''
     score_td = ''
     ind = 0
-    try:
-        for line in file:
-            if ind == 0:
-                ind += 1
-                continue
-            else:
-                last = len(line.split())
-                i = 0
-                tmp = ''
-                laststr = ''
-                for u in line.split():
-                    if i == last - 1:
-                        laststr = u
-                        break
-                    else:
-                        tmp += u + ' '
-                    i += 1
-                #print(f'tmp - {tmp}, // laststr - {laststr}')
-                (key, value) = (tmp, laststr)
-                tmp_name = key
-                SCORE = value
-                http += f'''<tr class="hvr" ><th scope="row" class="ctr">#{ind}</th><td > {tmp_name} </td><td class="ctr2"> {SCORE} </td></tr>\n'''
-                ind += 1
-    except Exception as e:
-        print('Error', e)
-
+    for line in file:
+        if ind == 0:
+            ind += 1
+            continue
+        else:
+            last = len(line.split())
+            i = 0
+            tmp = ''
+            laststr = ''
+            for u in line.split():
+                if i == last - 1:
+                    laststr = u
+                    break
+                else:
+                    tmp += u + ' '
+                i += 1
+            #print(f'tmp - {tmp}, // laststr - {laststr}')
+            (key, value) = (tmp, laststr)
+            tmp_name = key
+            SCORE = value
+            http += f'''<tr class="hvr" ><th scope="row" class="ctr">#{ind}</th><td > {tmp_name} </td><td class="ctr2"> {SCORE} </td></tr>\n'''
+            ind += 1
     return http
 
 
@@ -114,10 +119,10 @@ def done(http):
 @app.route("/")
 def score_server_run():
     http = init_http()
-    file_name = init_file()
-
+    file_names = init_file()
     ERROR = f"""ERROR  -  {BAD_RETURN_CODE}"""
-
+    os.chdir(webpath)
+    os.getcwd()
     try:
         file = open(file_name)
         http_success = success(http, file)

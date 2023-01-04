@@ -14,16 +14,15 @@ def get_geuss_from_user(diff):
     con = True
     while con:
         guess = input(f'Please choose a number between 1 and {diff} as your guess \n')
-        try:
-            gss = int(guess)
-            if not (1 <= gss <= 5):
+        if guess.isnumeric():
+            if not (1 <= int(guess) <= 5):
                 print("You have entered a number not in range please try again")
                 sleep(0.1)
                 continue
             else:
                 sleep(0.1)
                 return gss
-        except:
+        else:
             print("Its not a number please try again")
             sleep(0.1)
             continue

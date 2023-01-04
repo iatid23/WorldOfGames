@@ -39,12 +39,12 @@ def get_list_from_user(diff):
     for items in range(0, diff):
         while True:
             x = input(f'{i+1}) ')
-            try:
+            if x.isnumeric():
                 list.append(int(x))
                 i += 1
                 sleep(0.1)
                 break
-            except:
+            else:
                 print('You did not entered a number, please try again')
                 sleep(0.1)
                 continue

@@ -1,6 +1,7 @@
 import requests
 import json
 import random
+from currency_converter import CurrencyConverter
 from Utils import Screen_cleaner
 from time import sleep
 
@@ -24,6 +25,8 @@ def currency_rate(number):
     p = Payload(result)
     return p
 
+
+
 def random_dollar():
     dollar = random.randint(1, 100)
     return int(dollar)
@@ -31,27 +34,32 @@ def random_dollar():
 def get_money_interval(d, t):
     # Will get the current currency rate from USD to ILS and will generate an interval as follows:
     # a. for given difficulty d, and value of money t the interval will be: (t- (5-d), t+ (5-d))
-
-    lower_bound = t-(5-d)
-    upper_bound = t+(5-d)
-    interval_after_exchange= (currency_rate(lower_bound).result, currency_rate(upper_bound).result)
-
+    c = CurrencyConverter()
+    lower_bound = t - (5 - d)
+    upper_bound = t + (5 - d)
+    # print("\n", lower_bound, upper_bound)
+    lower_bound_con = c.convert(lower_bound, 'USD', 'ILS')
+    upper_bound_con = c.convert(upper_bound, 'USD', 'ILS')
+    # print("\n", lower_bound_con, upper_bound_con)
+    # interval_after_exchange = (currency_rate(lower_bound).result, currency_rate(upper_bound).result)
+    interval_after_exchange = (lower_bound_con, upper_bound_con)
     return interval_after_exchange
+
 
 def get_guess_from_user(t):
     # A method to prompt a guess from the user to enter a guess of value to a given amount of USD
     con = True
     while con:
         money_guess = input(f"Hi,Do you Think You Can Guess how much {t} is in ILS rate ? \n")
-        try:
-            gss = int(money_guess)
+        if money_guess.isnumeric():
             sleep(0.1)
             return money_guess
-        except:
+        else:
             print("Its not a number please try again")
             sleep(0.1)
             continue
         sleep(0.1)
+
 
 def play(diff):
     # Will call the functions above and play the game. Will return True/False if the user lost or won.

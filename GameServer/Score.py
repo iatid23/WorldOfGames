@@ -12,6 +12,7 @@
 diff = 0
 file_name = "Scores.txt"
 
+
 def check_file():
     try:
         file = open(file_name)
@@ -21,6 +22,8 @@ def check_file():
         x = input('Do you want to make a new score file file? if not so please enter "No" ')
         file = open(file_name, "w+")
         return file
+
+
 def add_score(difficulty, name):
     POINTS_OF_WINNING = (difficulty * 3) + 5
     #print("this func will make new file -  Scores.txt ")
