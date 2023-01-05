@@ -5,11 +5,7 @@ from Utils import Screen_cleaner
 from time import sleep
 from Score import add_score
 
-choice_dictionary_content = {1: 'a sequence of numbers will appear for 1 second and you have to  guess it back',
-                             2: 'guess a number and see if you chose like the computer',
-                             3: 'Currency Roulette - try and guess the value of a random amount of USD in ILS'}
-choice_dictionary = {1: 'Memory Game', 2: 'Guess Game', 3: 'Currency Roulette'}
-difficulty_dictionary = {1: 'Super Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 'Extreme'}
+
 
 
 def play_or_not(name):
@@ -77,10 +73,16 @@ __________________________________________________'''
 
 
 def load_game():
+    choice_dictionary_content = {1: 'a sequence of numbers will appear for 1 second and you have to  guess it back',
+                                 2: 'guess a number and see if you chose like the computer',
+                                 3: 'Currency Roulette - try and guess the value of a random amount of USD in ILS'}
+    choice_dictionary = {1: 'Memory Game', 2: 'Guess Game', 3: 'Currency Roulette'}
+    difficulty_dictionary = {1: 'Super Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 'Extreme'}
+
     name = input_and_check_hello()
     boo = True
     while boo:
-        global choice_dictionary, difficulty_dictionary, choice_dictionary_content
+        # global choice_dictionary, difficulty_dictionary, choice_dictionary_content
         y = 1
         print(f'Please choose a game to play:')
         while y <= len(choice_dictionary):

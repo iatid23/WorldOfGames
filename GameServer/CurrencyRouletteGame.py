@@ -10,6 +10,8 @@ from time import sleep
 # and wiil ask the user what he thinks is the value of the generated number from USD to ILS,
 # depending on the user's difficulty his answer will be correct
 # if the guessed value is between the interval surrounding the correct answer
+
+
 def currency_rate(number):
     url = f"https://api.apilayer.com/currency_data/convert?to=ils&from=usd&amount={number}"
     payload = {}
@@ -26,10 +28,10 @@ def currency_rate(number):
     return p
 
 
-
 def random_dollar():
     dollar = random.randint(1, 100)
     return int(dollar)
+
 
 def get_money_interval(d, t):
     # Will get the current currency rate from USD to ILS and will generate an interval as follows:
@@ -77,6 +79,7 @@ def play(diff):
             more = False
             sleep(0.1)
             return True
+
         else:
             print("nice try - better luck next time")
             print("You are most welcome to try again")

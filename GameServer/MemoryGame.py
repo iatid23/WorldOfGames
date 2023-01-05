@@ -1,6 +1,8 @@
 from time import sleep
 import random
 from Utils import Screen_cleaner
+
+
 def show_fast(items):
     count = [5, 4, 3, 2, 1, 0]
     i = 0
@@ -18,6 +20,7 @@ def show_fast(items):
 # and then prompt them from the user for the numbers that he remember.
 # If he was right with all the numbers the user will win, otherwise he will lose
 
+
 def generate_sequence(diff):
     # Will generate a list of random numbers between 1 to 101. The list length will be difficulty.
     list = []
@@ -28,6 +31,7 @@ def generate_sequence(diff):
     x = input('are you ready... ? if so please press enter to start')
     show_fast(list)
     return list
+
 
 def get_list_from_user(diff):
     # Will return a list of numbers prompted from the user. The list length will be in the size of difficulty.
@@ -51,6 +55,7 @@ def get_list_from_user(diff):
             sleep(0.1)
     return list
 
+
 def is_list_equal(list1, list2):
     # A function to compare two lists if they are equal. The function will return True/False.
     list1.sort()
@@ -67,6 +72,7 @@ def is_list_equal(list1, list2):
         Screen_cleaner()
         sleep(0.1)
         return False
+
 
 def play(diff):
     # Will call the functions above and play the game. Will return True/False if the user lost or won.
